@@ -6,3 +6,4 @@
 
 meteor-platform
 mrt:bootstrap-3
+iron:router
