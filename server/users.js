@@ -2,6 +2,10 @@ Meteor.methods({
     login: function (email, password) {
         var md5 = "8982065e30ea02cf02e93a83824cf65b7de1e69545ce8bed4f2bb3c98a862b70";
         var url = "https://api-staging.vietnamworks.com";
+        var returnJson = {
+            status: 400,
+            userHasMatchingScore: false
+        };
 
         try {
             this.unblock();
@@ -35,13 +39,17 @@ Meteor.methods({
                 );
                 var isUserHavingMatchingScoreJson = JSON.parse(isUserHavingMatchingScore.content);
                 console.log(email + ":" + isUserHavingMatchingScoreJson.data.has_matching_info);
-                return isUserHavingMatchingScoreJson.data.has_matching_info;
+
+                returnJson.status = 200;
+                returnJson.userHasMatchingScore = isUserHavingMatchingScoreJson.data.has_matching_info;
+
+                return returnJson;
             } else {
-                return false;
+                return returnJson;
             }
         } catch (e) {
             console.error(e);
-            return false;
+            return returnJson;
         }
     }
 });
