@@ -51,14 +51,11 @@ Meteor.methods({
                 returnJson.lastName = content.data.profile.last_name;
                 returnJson.userId = content.data.profile.user_id;
                 returnJson.userHasMatchingScore = isUserHavingMatchingScoreJson.data.has_matching_info;
-
-                return returnJson;
-            } else {
-                return returnJson;
             }
         } catch (e) {
             console.error(e);
-            return returnJson;
         }
+
+        return returnJson;
     }
 });

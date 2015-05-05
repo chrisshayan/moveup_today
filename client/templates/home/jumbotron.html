@@ -1,18 +1,24 @@
 <template name="jumbotron">
+    <body class="home-page">
     <section class="jumbotron">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <h1>Kinh nghiệm tối ưu cho người tìm việc</h1>
+
                     <div class="video">
-                        <iframe width="550" height="315" src="https://www.youtube.com/embed/0hvB3Ze1-Gk?modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;rel=0&amp;loop=1&amp;playlist=0hvB3Ze1-Gk&amp;iv_load_policy=3&amp;autoplay=1" frameborder="0" allowfullscreen="" autoplay=""></iframe>
+                        <iframe width="550" height="315"
+                                src="https://www.youtube.com/embed/0hvB3Ze1-Gk?modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;controls=0&amp;rel=0&amp;loop=1&amp;playlist=0hvB3Ze1-Gk&amp;iv_load_policy=3&amp;autoplay=1"
+                                frameborder="0" allowfullscreen="" autoplay=""></iframe>
                     </div>
-                    <p class="lead">Real-Time Job Matching cung cấp các cơ hội việc làm phù hợp nhất mà bạn không cần phải tìm kiếm.
+                    <p class="lead">Real-Time Job Matching cung cấp các cơ hội việc làm phù hợp nhất mà bạn không cần
+                        phải tìm kiếm.
                         <br>Đăng nhập tài khoản VietnamWorks của bạn và Move Up ngay hôm nay!
                     </p>
-                    <button class="btn btn-primary">
+                    <a href="{{pathFor 'signin_layout'}}" class="btn btn-primary ">
                         Bắt Đầu Ngay
-                    </button>
+                    </a>
+
                     <div class="share">
                         <em>Chia sẻ:</em>
                         <a href="#">
@@ -23,4 +29,5 @@
             </div>
         </div>
     </section>
+    </body>
 </template>
