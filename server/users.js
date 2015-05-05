@@ -50,6 +50,7 @@ Meteor.methods({
                 returnJson.firstName = content.data.profile.first_name;
                 returnJson.lastName = content.data.profile.last_name;
                 returnJson.userId = content.data.profile.user_id;
+                returnJson.email = content.data.profile.email;
                 returnJson.userHasMatchingScore = isUserHavingMatchingScoreJson.data.has_matching_info;
             }
         } catch (e) {
