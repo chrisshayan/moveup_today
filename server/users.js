@@ -4,6 +4,11 @@ Meteor.methods({
         var url = "https://api-staging.vietnamworks.com";
         var returnJson = {
             status: 400,
+            token: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            userId: 0,
             userHasMatchingScore: false
         };
 
@@ -41,15 +46,16 @@ Meteor.methods({
                 console.log(email + ":" + isUserHavingMatchingScoreJson.data.has_matching_info);
 
                 returnJson.status = 200;
+                returnJson.token = content.data.profile.login_token;
+                returnJson.firstName = content.data.profile.first_name;
+                returnJson.lastName = content.data.profile.last_name;
+                returnJson.userId = content.data.profile.user_id;
                 returnJson.userHasMatchingScore = isUserHavingMatchingScoreJson.data.has_matching_info;
-
-                return returnJson;
-            } else {
-                return returnJson;
             }
         } catch (e) {
             console.error(e);
-            return returnJson;
         }
+
+        return returnJson;
     }
 });
