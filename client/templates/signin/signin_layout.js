@@ -2,6 +2,7 @@ Template.signinLayout.events({
     'submit form': function(event, template) {
         event.preventDefault();
 
+        clearErrors();
         Meteor.call("vietnamworksLogin", event.target.username.value, event.target.password.value, function (error, result) {
             console.log(result);
             if(result.status == 200) {
