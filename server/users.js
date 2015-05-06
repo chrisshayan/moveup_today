@@ -5,9 +5,6 @@ Meteor.methods({
         var returnJson = {
             status: 400,
             token: "",
-            firstName: "",
-            lastName: "",
-            email: "",
             userId: 0,
             userHasMatchingScore: false
         };
@@ -47,10 +44,7 @@ Meteor.methods({
 
                 returnJson.status = 200;
                 returnJson.token = content.data.profile.login_token;
-                returnJson.firstName = content.data.profile.first_name;
-                returnJson.lastName = content.data.profile.last_name;
                 returnJson.userId = content.data.profile.user_id;
-                returnJson.email = content.data.profile.email;
                 returnJson.userHasMatchingScore = isUserHavingMatchingScoreJson.data.has_matching_info;
             }
         } catch (e) {
