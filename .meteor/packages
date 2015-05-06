@@ -8,3 +8,4 @@ meteor-platform
 mrt:bootstrap-3
 iron:router
 http
+percolatestudio:synced-cron
