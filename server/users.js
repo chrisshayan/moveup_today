@@ -1,6 +1,6 @@
 Meteor.methods({
     vietnamworksLogin: function (email, password) {
-        var md5 = "8982065e30ea02cf02e93a83824cf65b7de1e69545ce8bed4f2bb3c98a862b70";
+        var md5 = "2ed19d9c84fa9280fe6fa1a9e58de807a9d076646de8327c53fc8ed64ca4e267";
         var url = "https://api-staging.vietnamworks.com";
         var returnJson = {
             status: 400,

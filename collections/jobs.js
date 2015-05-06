@@ -1,1 +1,1 @@
-Jobs = new Meteor.Collection('jobs');
+Jobs = new Mongo.Collection('jobs');
