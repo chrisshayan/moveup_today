@@ -26,9 +26,8 @@ Meteor.methods({
                 }
             );
 
-            if (result.statusCode == 200) {
-                var content = JSON.parse(result.content);
-
+            var content = JSON.parse(result.content);
+            if (result.statusCode == 200 && content.meta.message != "Failed") {
                 var isUserHavingMatchingScore = Meteor.http.call(
                     "POST",
                     url + "/users/has-matching-info/?token=" + content.data.profile.login_token, {
@@ -53,4 +52,6 @@ Meteor.methods({
 
         return returnJson;
     }
+
+
 });
