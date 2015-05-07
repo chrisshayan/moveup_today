@@ -27,15 +27,17 @@ Template.jobLayout.rendered = function () {
     $('.toggle-job-brief a').click(function (e) {
         e.preventDefault();
     });
-    $('.toggle-job-brief').click(function () {
+    $('body').on('click','.toggle-job-brief',function(){
         $(this).next('.benefits-info').slideToggle('normal');
         $(this).find('.fa-caret-down, .fa-caret-up').toggleClass('fa-caret-down fa-caret-up');
-    });
-    // Company Benefits Toggle /**/
+    })
 
+
+    // Company Benefits Toggle /**/
     $(window).focus(function () {
         callMatchingScore();
     });
+
 };
 
 Template.jobLayout.destroyed = function () {
