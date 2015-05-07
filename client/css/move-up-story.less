@@ -1,0 +1,157 @@
+@import "../../../vnw/ui/css/jobseekers/variables.less";
+@import "../../../vnw/ui/css/jobseekers/mixins";
+// General
+//====================================
+html{ height:100% }
+body{ font-family:Roboto, Arial, sans-serif; background:@gray-light-extreme; margin:0; padding:0; min-height:100%; position:relative; padding-bottom:80px;
+	&.home-page{ background:url(/assets/images/move-up-story-background.png); background-size:cover; }
+	*{ font-weight:100; color:#7a8288 }
+	.container h1{ font-size:36px; font-weight:700; color:#444; text-align:center; margin-top:70px; }
+	.container h2{ font-size:24px; font-weight:700; color:#444 }
+	p.lead{ font-weight:100; font-size:24px; color:#666; text-align:center; margin-top:0; margin-bottom:40px; }
+	section{ background:#fff }
+}
+// Header
+//====================================
+// Logo
+section.header{
+	background:#fff;
+	.logo-moveup-today{
+		font-weight:700; color:#444; font-size:30px; margin-top:5px;
+		.dot{ color:@brand-info; font-size:36px; font-weight:900; }
+	}
+
+	.top-navigation{ margin-top:17px; margin-right:25px;
+		li{ padding:2px 15px }
+		.btn-main{ border:1px solid #d2e0ea; border-radius:4px; margin-left:10px; }
+	}
+
+	.vnw-logo{ margin:10px 0 }
+}
+// Jumbotron
+section.jumbotron{
+	position:relative; padding:0; margin:0; border:none; background:transparent;
+	h1{ font-size:36px; color:#fff; padding:20px 35px 15px; background-color:rgba(255, 255, 255, 0.2); margin-top:70px; display:inline-block; }
+	.video{ margin-top:50px; text-align:center;
+		iframe{ border:6px solid rgba(255, 255, 255, 0.5); .border-radius(5px) }
+	}
+	p.lead{ color:#fff; font-size:23px; margin-top:30px; margin-bottom:0; }
+	.btn-primary{ font-size:24px; font-weight:700; margin-top:30px; }
+	.share{ font-size:18px; margin-top:15px; margin-bottom:60px;
+		span, em{ color:#fff; vertical-align:middle; }
+		em{ font-size:16px; }
+		a, img{ outline:none }
+	}
+}
+// Footer
+section.footer{
+	background:#f7f7f7; border-bottom:5px solid #0581c0; position:absolute; bottom:0; width:100%;
+	.logo-vnw-gray, .logo-techlooper-gray{ padding:10px 20px; border-right:1px solid #c2cfd8; height:75px }
+	.logo-techlooper-gray img{ margin-top:5px; }
+	.copyright{
+		margin-top:18px; margin-left:10px;
+		.lead{ margin-bottom:0; font-weight:bold; font-size:18px; text-align:left; }
+	}
+}
+// Medium & large screen | 992px <= Screen
+@media (min-width:@screen-md-min) and (max-width:@screen-md-max){
+	// Jumbotron
+	section.jumbotron{
+		p.lead{ font-size:20px; }
+	}
+}
+// Small screen | 768px <= Screen < 992px
+@media (min-width:@screen-sm-min) and (max-width:@screen-sm-max){
+	// Jumbotron
+	section.jumbotron{
+		h1{ font-size:32px }
+		p.lead{ font-size:20px; }
+	}
+}
+//Extreme small screen | Screen < 768px
+@media (max-width:@screen-xs-max){
+	body{ padding-bottom:114px; }
+	// Header
+	section.header{
+		.logo-moveup-today{ font-size:20px; margin-top:0; }
+	}
+	// Jumbotron
+	section.jumbotron{
+		h1{ font-size:22px; margin-top:44px; }
+		.video{ margin-top:24px;
+			iframe{ width:100%; max-width:550px; }
+		}
+		p.lead{ font-size:16px; margin-top:14px; }
+		button{ margin-top:20px; }
+		.share{ margin-bottom:40px; }
+	}
+	// Footer
+	section.footer{
+		.logo-vnw-gray, .logo-techlooper-gray{ width:50%; border-right:none; text-align:center; height:auto;
+			img{ .img-responsive(); margin:auto }
+		}
+		.copyright{ width:100%; text-align:center; margin-top:0; }
+	}
+}
+// Screen <= 480px
+@media (max-width:@screen-iphone-lg){
+	// Header
+	section.header{
+		ul.top-navigation{ display:none }
+	}
+	.video{
+		iframe{
+			width:100%; height:270px;
+		}
+	}
+
+}
+// Screen <= 360px
+@media (max-width:@screen-nexus){
+	body{ padding-bottom:105px; }
+	section.jumbotron{
+		.video{
+			iframe{
+				width:100%; height:202px;
+			}
+		}
+		p.lead{ font-size:15px; }
+		.btn-primary{ font-size:20px; }
+	}
+}
+// Screen <= 320px
+@media (max-width:@screen-iphone){
+	body{ padding-bottom:99px; }
+	// Jumbotron
+	section.jumbotron{
+		h1{ font-size:20px; }
+		.video{
+			iframe{
+				width:100%; height:180px;
+			}
+		}
+		.btn-primary{ font-size:18px; }
+		.share em{ font-size:14px; }
+	}
+}
+// Job List Page
+//====================================
+.job-list{
+	.box{ border:none }
+	table{ border:none }
+	.orange strong{ font-weight:bold; color:@brand-primary }
+	.matching-score{ .transition(opacity 0.5s); img{width:98px;height:11px}; margin-top:20px; }
+	.job-post:hover .matching-score{ .opacity(1) }
+	.score{ font-size:16px; font-weight:bold; vertical-align:middle; }
+	.load-more-job{
+		margin-bottom:15px;
+		img{
+			.transition(~"opacity 0.3s, transform 0.3s"); .opacity(0.5); cursor:pointer;
+			&:hover{ .opacity(1);
+				transform:rotate(90deg);
+			}
+			&:active{ transform:rotate(270deg) }
+		}
+	}
+
+}
