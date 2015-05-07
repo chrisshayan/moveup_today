@@ -18,8 +18,7 @@ Template.jobLayout.created = function () {
 };
 
 Template.jobLayout.events({
-    'focus .pubSubHook': function () {
-        alert('test');
+    'focus .pubSubHook': function() {
     }
 });
 
@@ -46,5 +45,9 @@ Template.jobLayout.destroyed = function () {
 Template.jobLayout.helpers({
     jobs: function () {
         return Jobs.find();
+    },
+
+    benefitClass: function () {
+        return Meteor.settings.public.benefitIcons[this.benefitId-1].iconClass;
     }
 });
