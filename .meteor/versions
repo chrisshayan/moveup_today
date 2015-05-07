@@ -56,6 +56,7 @@ retry@1.0.3
 routepolicy@1.0.5
 service-configuration@1.0.4
 session@1.1.0
+simple:reactive-method@1.0.2
 spacebars@1.0.6
 spacebars-compiler@1.0.6
 templating@1.1.1
