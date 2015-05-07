@@ -44,7 +44,29 @@ Template.jobLayout.destroyed = function () {
 
 Template.jobLayout.helpers({
     jobs: function () {
-        return Jobs.find();
+        var jobList = Jobs.find().fetch();
+        var params = [Session.get('userInformation').userId];
+        _.each(jobList, function(job) {
+            params.push(job.jobId);
+        });
+        if (params.length > 1) {
+            try {
+                var result = ReactiveMethod.call("getMatchingScore", params);
+                if (!!result) {
+                    _.map(jobList, function(job) {
+                        if (_.has(result, job.jobId)) {
+                            job.matchingScore = Math.round(result[job.jobId]);
+                        } else {
+                            job.matchingScore = 'N/A';
+                        }
+                    });
+                    return jobList;
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        return [];
     },
 
     benefitClass: function () {
