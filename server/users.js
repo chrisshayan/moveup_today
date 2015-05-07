@@ -72,8 +72,6 @@ Meteor.methods({
         try {
             this.unblock();
 
-            console.log(url + "/jobs/matching-score/?userId=" + userId + "&" + jobQuery);
-
             var result = HTTP.get(
                 url + "/jobs/matching-score/?userId=" + userId + "&" + jobQuery, {
                     headers: {
@@ -88,7 +86,6 @@ Meteor.methods({
         }
 
         var content = JSON.parse(result.content);
-        console.log(content);
 
         if(content.meta.code == 200) {
             return content.data.matchingScore;
