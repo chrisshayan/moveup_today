@@ -38,6 +38,11 @@ Template.jobLayout.rendered = function () {
         callMatchingScore();
     });
 
+    if (Session.get('isUserLogin') !== true) {
+        $('#logout').hide();
+    } else {
+        $('#logout').show();
+    }
 };
 
 Template.jobLayout.destroyed = function () {
