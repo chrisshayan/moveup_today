@@ -13,7 +13,7 @@ var addJob = function () {
         },
         job: function() {
             // Pull the jobs of last 10 minutes into Jobs mongodb collection
-            pullJobs(600);
+            pullJobs(2592000);
         }
     });
 };

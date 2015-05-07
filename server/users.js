@@ -54,6 +54,9 @@ Meteor.methods({
     },
 
     getMatchingScore : function() {
-
+        if (arguments.length < 2) {
+            throw new Meteor.Error("invalid-arguments", "You need to have at least one job seeker id as first parameter and min one job id");
+        }
+        console.log(arguments);
     }
 });
