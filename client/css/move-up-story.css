@@ -44,6 +44,12 @@ body section {
 section.header {
   background: #fff;
 }
+a.share-fb-button {
+    font-size: 30px;
+}
+a.share-fb-button .fa {
+    color: #FFF;
+}
 section.header .logo-moveup-today {
   font-weight: 700;
   color: #444;
