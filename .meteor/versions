@@ -1,6 +1,7 @@
 accounts-base@1.2.0
 accounts-ui@1.1.5
 accounts-ui-unstyled@1.1.7
+amplify@1.0.0
 autoupdate@1.2.1
 base64@1.0.3
 binary-heap@1.0.3
@@ -61,6 +62,7 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 templating@1.1.1
 tracker@1.0.7
+u2622:persistent-session@0.3.4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
