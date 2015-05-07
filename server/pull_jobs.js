@@ -1,6 +1,6 @@
 pullJobs = function(period) {
-    var md5 = "2ed19d9c84fa9280fe6fa1a9e58de807a9d076646de8327c53fc8ed64ca4e268";
-    var url = "https://api-staging.vietnamworks.com";
+    var md5 = Meteor.settings.apiConsumerKey;
+    var url = Meteor.settings.apiUrl;
     try {
         var result = HTTP.get(
             url + "/jobs/fetch/?period=" + period,
