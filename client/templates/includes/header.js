@@ -3,9 +3,18 @@
  */
 Template.header.events({
     'click #logout': function(event, template){
-        Session.set('isUserLogin', false);
-        Session.set('userInformation', false);
-        Session.set('matchingScoreInfo', false);
-        Router.go('signinLayout');
+        Session.set('isUserLogin', null);
+        Session.set('userInformation', null);
+        Session.set('matchingScoreInfo', null);
+        Router.go('/');
     }
 });
+
+Template.header.rendered = function (){
+    if (Session.get('isUserLogin') !== true) {
+        $('#logout').hide();
+    } else {
+        console.log('sesson false');
+        $('#logout').show();
+    }
+};
