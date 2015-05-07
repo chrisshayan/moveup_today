@@ -1,7 +1,8 @@
+var md5 = Meteor.settings.apiConsumerKey;
+var url = Meteor.settings.apiUrl;
+
 Meteor.methods({
     vietnamworksLogin: function (email, password) {
-        var md5 = Meteor.settings.apiConsumerKey;
-        var url = Meteor.settings.apiUrl;
         var returnJson = {
             status: 400,
             token: "",
@@ -57,6 +58,44 @@ Meteor.methods({
         if (arguments.length < 2) {
             throw new Meteor.Error("invalid-arguments", "You need to have at least one job seeker id as first parameter and min one job id");
         }
-        console.log(arguments);
+
+        var args = Array.prototype.slice.call(arguments);
+        var userId = arguments[0];
+        var jobIds = args.splice(1, arguments.length);
+
+        jobIds = jobIds.map(function(element) {
+            return 'jobId[]=' + element;
+        });
+
+        var jobQuery = jobIds.join("&");
+
+        try {
+            this.unblock();
+
+            console.log(url + "/jobs/matching-score/?userId=" + userId + "&" + jobQuery);
+
+            var result = HTTP.get(
+                url + "/jobs/matching-score/?userId=" + userId + "&" + jobQuery, {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    }
+                }
+            );
+        } catch (e) {
+            throw new Meteor.Error("rest-api-failed", "Failed to call the REST api on VietnamWorks");
+        }
+
+        var content = JSON.parse(result.content);
+        console.log(content);
+
+        if(content.meta.code == 200) {
+            return content.data.matchingScore;
+        } else {
+            throw new Meteor.Error("rest-api-failed", content.meta.code + ", message:" + content.meta.message);
+        }
+
+
     }
 });
