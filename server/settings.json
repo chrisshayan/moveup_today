@@ -2,6 +2,24 @@
   "public" : {
     "ga": {
       "account":"UA-62658031-1"
-    }
+    },
+
+    "benefitIcons": [
+      {"iconClass":"fa-dollar"},
+      {"iconClass":"fa-user-md"},
+      {"iconClass":"fa-file-image-o"},
+      {"iconClass":"fa-graduation-cap"},
+      {"iconClass":"fa-trophy"},
+      {"iconClass":"fa-book"},
+      {"iconClass":"fa-laptop"},
+      {"iconClass":"fa-mobile"},
+      {"iconClass":"fa-plane"},
+      {"iconClass":"fa-glass"},
+      {"iconClass":"fa-cab"},
+      {"iconClass":"fa-coffee"},
+      {"iconClass":"fa-gift"},
+      {"iconClass":"fa-child"},
+      {"iconClass":"fa-check-square-o"}
+    ]
   }
 }
