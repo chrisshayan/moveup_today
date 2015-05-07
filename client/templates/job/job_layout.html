@@ -573,5 +573,8 @@
 	<!--/ Test the static Job List-->
     {{#each jobs}}
         {{jobTitle}}
+        {{#each benefits}}
+            {{benefitClass}}
+        {{/each}}
     {{/each}}
 </template>

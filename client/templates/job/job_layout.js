@@ -6,7 +6,7 @@ var callMatchingScore = function () {
             jobSub.stop();
             jobSub = Meteor.subscribe('userJobs', Session.get('userInformation').userId);
         }
-    })
+    });
 };
 
 Template.jobLayout.created = function () {
@@ -32,7 +32,7 @@ Template.jobLayout.rendered = function () {
         e.preventDefault();
     });
     $('.toggle-job-brief').click(function () {
-        $(this).next('.benefits-info').slideToggle('normal')
+        $(this).next('.benefits-info').slideToggle('normal');
         $(this).find('.fa-caret-down, .fa-caret-up').toggleClass('fa-caret-down fa-caret-up');
     });
     // Company Benefits Toggle /**/

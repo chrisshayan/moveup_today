@@ -24,6 +24,7 @@ Meteor.publish('userJobs', function(userId) {
     var content = getUserMatchingScoreInformation(userId);
 
     if(content.meta.code == 200 && content.meta.message == "Success") {
-        return Jobs.find({jobTitle: content.data.matching_info.jobTitle});
+        var searchJobTitleKeyWord = content.data.matching_info.jobTitle.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+        return Jobs.find({jobTitle: { $regex: searchJobTitleKeyWord, $options: "i"}});
     }
 });
