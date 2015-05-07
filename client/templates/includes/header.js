@@ -6,15 +6,7 @@ Template.header.events({
         Session.set('isUserLogin', null);
         Session.set('userInformation', null);
         Session.set('matchingScoreInfo', null);
+        Meteor.logout();
         Router.go('/');
     }
 });
-
-Template.header.rendered = function (){
-    if (Session.get('isUserLogin') !== true) {
-        $('#logout').hide();
-    } else {
-        console.log('sesson false');
-        $('#logout').show();
-    }
-};

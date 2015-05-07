@@ -92,7 +92,28 @@ Meteor.methods({
         } else {
             throw new Meteor.Error("rest-api-failed", content.meta.code + ", message:" + content.meta.message);
         }
+    },
 
+    getUserIdByEmailAddress: function(email) {
+        try {
+            this.unblock();
 
+            var result = HTTP.get(
+                url + "/users/user-info/?email=" + email, {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    }
+                }
+            );
+        } catch (e) {
+            throw new Meteor.Error("rest-api-failed", "Failed to call the REST api on VietnamWorks");
+        }
+
+        var content = JSON.parse(result.content);
+        if(content.meta.code == 200 && content.meta.message == 'Success') {
+            return content.data;
+        }
     }
 });

@@ -7,9 +7,11 @@
                     <a href="{{pathFor 'homeLayout'}}">
                         <div class="logo-moveup-today">MoveUp<span class="dot">.</span>today</div>
                     </a>
+                    {{#if currentUser}}
                         <div>
                             <a id="logout">Logout</a>
                         </div>
+                    {{/if}}
                 </div>
                 <!-- Right Navigation -->
                 <div class="col-sm-8 col-xs-8">
