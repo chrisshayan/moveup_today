@@ -49,5 +49,19 @@ Template.jobLayout.helpers({
 
     benefitClass: function () {
         return Meteor.settings.public.benefitIcons[this.benefitId-1].iconClass;
+    },
+
+    location: function () {
+        return this;
+    },
+
+    skill: function (){
+        return this;
+    },
+
+    formatDate: function() {
+        var approvedDate = new Date(this.approvedDate);
+        console.log(approvedDate);
+        return moment(approvedDate).format('DD/MM/YYYY');
     }
 });
