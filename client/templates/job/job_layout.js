@@ -23,10 +23,6 @@ Template.jobLayout.events({
 });
 
 Template.jobLayout.rendered = function () {
-    $(window).focus(function () {
-        callMatchingScore();
-    });
-
     //Company Benefits Toggle - This is used to init the collapse/expanse functionality for the job benefits
     $('.toggle-job-brief a').click(function (e) {
         e.preventDefault();
@@ -36,6 +32,10 @@ Template.jobLayout.rendered = function () {
         $(this).find('.fa-caret-down, .fa-caret-up').toggleClass('fa-caret-down fa-caret-up');
     });
     // Company Benefits Toggle /**/
+
+    $(window).focus(function () {
+        callMatchingScore();
+    });
 };
 
 Template.jobLayout.destroyed = function () {
@@ -51,17 +51,19 @@ Template.jobLayout.helpers({
         return Meteor.settings.public.benefitIcons[this.benefitId-1].iconClass;
     },
 
-    location: function () {
-        return this;
-    },
-
-    skill: function (){
-        return this;
+    jobUrl: function() {
+        return Meteor.settings.public.jobDomain + '/' + this.alias + "-jd";
     },
 
     formatDate: function() {
         var approvedDate = new Date(this.approvedDate);
-        console.log(approvedDate);
         return moment(approvedDate).format('DD/MM/YYYY');
     }
 });
+
+//get last element of array
+Template.registerHelper('last',
+    function(list, elem) {
+        return _.last(list) === elem;
+    }
+);

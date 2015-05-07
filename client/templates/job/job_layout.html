@@ -15,7 +15,7 @@
 									<div class="col-sm-9">
 										<!-- Job Title -->
 										<div class=" new-job">
-											<a href="http://www.vietnamworks.com/{{alias}}-jd" class="job-title text-clip text-lg" target="_blank">{{jobTitle}}<!--<span class="new-tag" style="position: absolute; top: 0px; left: 184px;">(New)</span>--></a>
+											<a href="{{jobUrl}}" class="job-title text-clip text-lg" target="_blank">{{jobTitle}}<!--<span class="new-tag" style="position: absolute; top: 0px; left: 184px;">(New)</span>--></a>
 										</div>
 										<span class="company-name text-clip visible-xs">
 											<span class="name">{{companyName}}</span>
@@ -27,7 +27,15 @@
 										<!-- Job info -->
 										<p class="job-info text-clip">
 											<span>
-												<span>{{#each locations}} {{location}} | {{/each}} </span>
+												<span>
+                                                    {{#each locations}}
+                                                        {{#if last ../locations this}}
+                                                            {{this}} |
+                                                        {{else}}
+                                                            {{this}},
+                                                        {{/if}}
+                                                    {{/each}}
+                                                </span>
 												<span>{{jobLevel}}</span>
 											</span>
 										</p>
@@ -57,7 +65,7 @@
 															<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">&nbsp;</div>
 														</div>
 													</div>
-													<em class="text-xs gray col-sm-10 col-xs-10 text-clip">{{skill}}</em>
+													<em class="text-xs gray col-sm-10 col-xs-10 text-clip">{{this}}</em>
 												</div>
                                                 {{/each}}
 											</div>
@@ -69,7 +77,7 @@
 											<span class="push-top-xxs orange bold-700"><strong>{{salary}}</strong></span>
 										</span>
 										<div class="company-name text-gray hidden-xs" data-original-title="{{companyName}}" title="{{companyName}}" style="word-wrap: break-word;">
-											<a href="http://www.vietnamworks.com/senior-software-engineer-25-1-559839-jd" target="_blank">
+											<a href="{{jobUrl}}" target="_blank">
 												{{companyName}}
 											</a>
 										</div>
