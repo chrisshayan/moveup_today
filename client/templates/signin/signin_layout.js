@@ -16,8 +16,6 @@ Template.signinLayout.events({
                     Meteor.call('getUserMatchingScoreInformation', result.userId, function(error, matchingScoreInfo) {
                         Session.set('matchingScoreInfo', matchingScoreInfo);
                     });
-
-                    Router.go('jobLayout');
                 } else {
                     throwError("Your account does not have enough information for Matching Score. Update in <a href='http://www.vietnamworks.com/my-career-center'>here.</a>");
                 }
@@ -27,11 +25,3 @@ Template.signinLayout.events({
         });
     }
 });
-
-Template.signinLayout.rendered = function (){
-    if (Session.get('isUserLogin') !== true) {
-        $('#logout').hide();
-    } else {
-        $('#logout').show();
-    }
-};
