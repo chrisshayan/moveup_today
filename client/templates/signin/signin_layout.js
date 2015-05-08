@@ -25,11 +25,3 @@ Template.signinLayout.events({
         });
     }
 });
-
-Template.signinLayout.rendered = function (){
-    if (Session.get('isUserLogin') !== true) {
-        $('#logout').hide();
-    } else {
-        $('#logout').show();
-    }
-};

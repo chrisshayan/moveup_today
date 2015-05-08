@@ -5,6 +5,7 @@ Template.social.events({
                 throw new Meteor.Error("Facebook login failed");
             }
         });
+        Session.set('isUserLogin', true);
     },
 
     'click #linkedin-login': function(event) {

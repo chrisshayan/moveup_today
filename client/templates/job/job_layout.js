@@ -33,12 +33,6 @@ Template.jobLayout.rendered = function () {
     $(window).focus(function () {
         checkMatchingInfoChanges();
     });
-
-    if (Session.get('isUserLogin') !== true) {
-        $('#logout').hide();
-    } else {
-        $('#logout').show();
-    }
 };
 
 Template.jobLayout.destroyed = function () {
