@@ -16,7 +16,11 @@ Template.social.events({
             }
 
             var emailAddress = Meteor.user().profile.emailAddress;
-            Meteor.call("getUserIdByEmailAddress", emailAddress, function(errors, result) {
+            Meteor.call("getAccountStatus", emailAddress, function(errors, accountStatusResult) {
+                console.log(accountStatusResult);
+            });
+
+            /*Meteor.call("getUserIdByEmailAddress", emailAddress, function(errors, result) {
                 Meteor.call("getUserMatchingScoreInformation", result.userId, function(errors, msResult) {
                     console.log(msResult);
 
@@ -25,7 +29,7 @@ Template.social.events({
                     Session.set('matchingScoreInfo', msResult);
                     Router.go('jobLayout');
                 });
-            });
+            });*/
         });
     },
 

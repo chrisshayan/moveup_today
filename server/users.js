@@ -118,7 +118,49 @@ Meteor.methods({
     },
 
     getAccountStatus: function(email) {
-        //https://api-staging.vietnamworks.com/users/account-status/?email=son.tran123@navigosgroup.com
+        try {
+            this.unblock();
 
+            var result = HTTP.get(
+                url + "/users/account-status/?email=" + email, {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    }
+                }
+            );
+        } catch (e) {
+            throw new Meteor.Error("rest-api-failed", "Failed to call the REST api on VietnamWorks");
+        }
+
+        var content = JSON.parse(result.content);
+        console.log(content);
+
+        return content;
+        //https://api-staging.vietnamworks.com/users/account-status/?email=son.tran123@navigosgroup.com
+    },
+
+    registerAccount: function(email, firstname, lastname) {
+        try {
+            this.unblock();
+            var result = Meteor.http.call(
+                "POST",
+                url + "/users/registerWithoutConfirm", {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    },
+                    data: {
+                        "email": email,
+                        "firstname": firstname,
+                        "lastname": lastname
+                    }
+                }
+            );
+        } catch (e) {
+            throw new Meteor.Error("rest-api-failed", "Failed to call the REST api on VietnamWorks");
+        }
     }
 });
