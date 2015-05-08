@@ -13,6 +13,17 @@ Template.social.events({
                 console.log(err);
                 throw new Meteor.Error("LinkedIn login failed");
             }
+
+            var emailAddress = Meteor.user().profile.emailAddress;
+            Meteor.call("getUserIdByEmailAddress", 'hamedshayan@gmail.com', function(errors, result) {
+                Meteor.call("getUserMatchingScoreInformation", result.userId, function(errors, msResult) {
+                    console.log(msResult);
+
+                    Session.set('isUserLogin', true);
+                    Session.set('userInformation', result);
+                    Router.go('jobLayout');
+                });
+            });
         });
     },
 
