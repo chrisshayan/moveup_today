@@ -1,27 +1,22 @@
-var jobSub = null;
-var callMatchingScore = function () {
-    Meteor.call('getUserMatchingScoreInformation', Session.get('userInformation').userId, function (error, matchingScoreInfo) {
-        if (matchingScoreInfo.data.matching_info.jobTitle != Session.get('matchingScoreInfo').data.matching_info.jobTitle) {
-            Session.set('matchingScoreInfo', matchingScoreInfo);
-            jobSub.stop();
-            jobSub = Meteor.subscribe('userJobs', Session.get('userInformation').userId);
+var checkMatchingInfoChanges = function () {
+    Meteor.call('getUserMatchingScoreInformation', Session.get('userInformation').userId, function (error, matchingInfo) {
+        if (matchingInfo.data.matching_info.jobTitle != Session.get('matchingScoreInfo').data.matching_info.jobTitle) {
+            Session.set('matchingScoreInfo', matchingInfo);
         }
     });
 };
-
-Template.jobLayout.created = function () {
-    if (jobSub == null) {
-        jobSub = Meteor.subscribe('userJobs', Session.get('userInformation').userId);
-    } else {
-        callMatchingScore();
-    }
-};
-
-Template.jobLayout.events({
-    'focus .pubSubHook': function() {
-    }
-});
-
+Template.jobLayout.created = function() {
+    var instance = this;
+    // check latest status of matching score information
+    checkMatchingInfoChanges();
+    // setup subscribe to userJobs publication that depends on matchingScoreInfo session
+    instance.autorun(function () {
+        var jobTitle = Session.get('matchingScoreInfo').data.matching_info.jobTitle;
+        var jobId = Session.get('userInformation').userId;
+        var subscription = instance.subscribe('userJobs', jobId, jobTitle);
+        subscription.ready();
+    });
+}
 Template.jobLayout.rendered = function () {
     //Company Benefits Toggle - This is used to init the collapse/expanse functionality for the job benefits
     $('.toggle-job-brief a').click(function (e) {
@@ -32,10 +27,8 @@ Template.jobLayout.rendered = function () {
         $(this).find('.fa-caret-down, .fa-caret-up').toggleClass('fa-caret-down fa-caret-up');
     })
 
-
-    // Company Benefits Toggle /**/
     $(window).focus(function () {
-        callMatchingScore();
+        checkMatchingInfoChanges();
     });
 
     if (Session.get('isUserLogin') !== true) {

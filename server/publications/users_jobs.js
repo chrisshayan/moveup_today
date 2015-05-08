@@ -19,12 +19,8 @@ Meteor.methods({
     getUserMatchingScoreInformation: getUserMatchingScoreInformation
 });
 
-Meteor.publish('userJobs', function(userId) {
-
-    var content = getUserMatchingScoreInformation(userId);
-
-    if(content.meta.code == 200 && content.meta.message == "Success") {
-        var searchJobTitleKeyWord = content.data.matching_info.jobTitle.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
-        return Jobs.find({jobTitle: { $regex: searchJobTitleKeyWord, $options: "i"}});
-    }
+Meteor.publish('userJobs', function(userId, jobTitle) {
+    var searchJobTitleKeyWord = jobTitle.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+    //console.log(userId, jobTitle);
+    return Jobs.find({jobTitle: { $regex: searchJobTitleKeyWord, $options: "i"}});
 });
