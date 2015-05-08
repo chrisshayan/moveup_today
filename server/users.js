@@ -115,5 +115,10 @@ Meteor.methods({
         if(content.meta.code == 200 && content.meta.message == 'Success') {
             return content.data;
         }
+    },
+
+    getAccountStatus: function(email) {
+        //https://api-staging.vietnamworks.com/users/account-status/?email=son.tran123@navigosgroup.com
+
     }
 });

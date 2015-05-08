@@ -16,12 +16,13 @@ Template.social.events({
             }
 
             var emailAddress = Meteor.user().profile.emailAddress;
-            Meteor.call("getUserIdByEmailAddress", 'hamedshayan@gmail.com', function(errors, result) {
+            Meteor.call("getUserIdByEmailAddress", emailAddress, function(errors, result) {
                 Meteor.call("getUserMatchingScoreInformation", result.userId, function(errors, msResult) {
                     console.log(msResult);
 
                     Session.set('isUserLogin', true);
                     Session.set('userInformation', result);
+                    Session.set('matchingScoreInfo', msResult);
                     Router.go('jobLayout');
                 });
             });
@@ -29,6 +30,9 @@ Template.social.events({
     },
 
     'click #logout': function(event) {
+        Session.set('isUserLogin', false);
+        Session.set('userInformation', null);
+
         Meteor.logout(function(err){
             if (err) {
                 throw new Meteor.Error("Logout failed");
