@@ -11,8 +11,9 @@ Template.jobLayout.created = function() {
     checkMatchingInfoChanges();
     // setup subscribe to userJobs publication that depends on matchingScoreInfo session
     instance.autorun(function () {
-        if (Session.get('matchingScoreInfo')) {
-            var jobTitle = Session.get('matchingScoreInfo').data.matching_info.jobTitle;
+        var matchingInfo = Session.get('matchingScoreInfo');
+        if (matchingInfo) {
+            var jobTitle = matchingInfo.data.matching_info.jobTitle;
             var jobId = Session.get('userInformation').userId;
             var subscription = instance.subscribe('userJobs', jobId, jobTitle);
             subscription.ready();
