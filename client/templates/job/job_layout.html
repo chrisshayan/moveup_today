@@ -1,125 +1,131 @@
 <template name="jobLayout">
-	<!-- Test the static Job List-->
-	<!-- Job List -->
-	<section class="job-list bg-gray" id="vnw-job-search">
-		<div class="container">
-			<!-- Jobs -->
-			<div class="box push-top-lg">
-				<table class="table table-hover link-list table-expanded ">
-					<tbody>
-						<!-- Job -->
-                        {{#each jobs}}
-						<tr class="job-post">
-							<td>
-								<div class="row relative">
-									<div class="col-sm-9">
-										<!-- Job Title -->
-										<div class=" new-job">
-											<a href="{{jobUrl}}" class="job-title text-clip text-lg" target="_blank">{{jobTitle}}<!--<span class="new-tag" style="position: absolute; top: 0px; left: 184px;">(New)</span>--></a>
-										</div>
-										<span class="company-name text-clip visible-xs">
-											<span class="name">{{companyName}}</span>
-										</span>
-										<span class="visible-xs">
-											<span class="push-top-xxs orange bold-700"><strong>{{salary}}</strong></span>
-										</span>
-										<div class="push-top-xxs"></div>
-										<!-- Job info -->
-										<p class="job-info text-clip">
-											<span>
+	{{#if Template.subscriptionsReady}}
+		<!-- Test the static Job List-->
+		<!-- Job List -->
+		<section class="job-list bg-gray" id="vnw-job-search">
+			<div class="container">
+				<!-- Jobs -->
+				<div class="box push-top-lg">
+					<table class="table table-hover link-list table-expanded ">
+						<tbody>
+							<!-- Job -->
+							{{#each jobs}}
+							<tr class="job-post">
+								<td>
+									<div class="row relative">
+										<div class="col-sm-9">
+											<!-- Job Title -->
+											<div class=" new-job">
+												<a href="{{jobUrl}}" class="job-title text-clip text-lg" target="_blank">{{jobTitle}}<!--<span class="new-tag" style="position: absolute; top: 0px; left: 184px;">(New)</span>--></a>
+											</div>
+											<span class="company-name text-clip visible-xs">
+												<span class="name">{{companyName}}</span>
+											</span>
+											<span class="visible-xs">
+												<span class="push-top-xxs orange bold-700"><strong>{{salary}}</strong></span>
+											</span>
+											<div class="push-top-xxs"></div>
+											<!-- Job info -->
+											<p class="job-info text-clip">
 												<span>
-                                                    {{#each locations}}
-                                                        {{#if last ../locations this}}
-                                                            {{this}} |
-                                                        {{else}}
-                                                            {{this}},
-                                                        {{/if}}
-                                                    {{/each}}
-                                                </span>
-												<span>{{jobLevel}}</span>
-											</span>
-										</p>
-										<div class="row extra-info">
-											<!-- Info -->
-											<div class="col-sm-5 push-top-xs">
-												<div class="row">
-													<span class="col-sm-12">
-														<span class="views">
-															<i class="fa fa-fw fa-calendar"></i>
-															<span>Posted: {{formatDate}}</span>
-														</span>
+													<span>
+														{{#each locations}}
+															{{#if last ../locations this}}
+																{{this}} |
+															{{else}}
+																{{this}},
+															{{/if}}
+														{{/each}}
 													</span>
-													<span class="col-sm-12">
-														<span class="views">
-															<i class="fa fa-fw fa-eye"></i>
-															<span class="view-number">Views: {{numOfViews}}</span>
+													<span>{{jobLevel}}</span>
+												</span>
+											</p>
+											<div class="row extra-info">
+												<!-- Info -->
+												<div class="col-sm-5 push-top-xs">
+													<div class="row">
+														<span class="col-sm-12">
+															<span class="views">
+																<i class="fa fa-fw fa-calendar"></i>
+																<span>Posted: {{formatDate}}</span>
+															</span>
 														</span>
-													</span>
-												</div>
-											</div>
-											<div class="col-sm-7 skills push-top-xs">
-                                                {{#each skills}}
-												<div class="row">
-													<div class="col-sm-2 col-xs-2">
-														<div class="progress progress-xxs">
-															<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">&nbsp;</div>
-														</div>
+														<span class="col-sm-12">
+															<span class="views">
+																<i class="fa fa-fw fa-eye"></i>
+																<span class="view-number">Views: {{numOfViews}}</span>
+															</span>
+														</span>
 													</div>
-													<em class="text-xs gray col-sm-10 col-xs-10 text-clip">{{this}}</em>
 												</div>
-                                                {{/each}}
+												<div class="col-sm-7 skills push-top-xs">
+													{{#each skills}}
+													<div class="row">
+														<div class="col-sm-2 col-xs-2">
+															<div class="progress progress-xxs">
+																<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">&nbsp;</div>
+															</div>
+														</div>
+														<em class="text-xs gray col-sm-10 col-xs-10 text-clip">{{this}}</em>
+													</div>
+													{{/each}}
+												</div>
 											</div>
 										</div>
-									</div>
-									<!-- Logo  -->
-									<div class="col-sm-3 text-center">
-										<span class="hidden-xs">
-											<span class="push-top-xxs orange bold-700"><strong>{{salary}}</strong></span>
-										</span>
-										<div class="company-name text-gray hidden-xs" data-original-title="{{companyName}}" title="{{companyName}}" style="word-wrap: break-word;">
-											<a href="{{jobUrl}}" target="_blank">
-												{{companyName}}
-											</a>
-										</div>
-										<!--Matching Score -->
-										<div class="matching-score">
-											<img class="matching-score-logo" src="/assets/images/matching-score-logo.png" alt="Matching Score"/>
-											<span>: </span><strong class="score">{{matchingScore}}</strong>
-										</div>
-										<!--/ Matching Score -->
-									</div>
-									<!-- Company Benefits-->
-									<div class="benefits box-xs">
-										<div class="toggle-job-brief row push-top-xs">
-											<span class="col-sm-12">
-												<span class="offers">
-													<i class="fa fa-fw fa-gift orange"></i>
-													<a href="" class="gray-light"><strong>What do we offer?</strong></a>
-													<i class="fa fa-caret-down text-gray-light "></i></span>
+										<!-- Logo  -->
+										<div class="col-sm-3 text-center">
+											<span class="hidden-xs">
+												<span class="push-top-xxs orange bold-700"><strong>{{salary}}</strong></span>
 											</span>
+											<div class="company-name text-gray hidden-xs" data-original-title="{{companyName}}" title="{{companyName}}" style="word-wrap: break-word;">
+												<a href="{{jobUrl}}" target="_blank">
+													{{companyName}}
+												</a>
+											</div>
+											<!--Matching Score -->
+											<div class="matching-score">
+												<img class="matching-score-logo" src="/assets/images/matching-score-logo.png" alt="Matching Score"/>
+												<span>: </span><strong class="score">{{matchingScore}}</strong>
+											</div>
+											<!--/ Matching Score -->
 										</div>
-										<div class="benefits-info collapse box-xs alert alert-info">
-											<div class="text-gray box-xs">
-                                                {{#each benefits}}
-												<div class="row">
-													<span class="benefit-icon pull-left"><i class="fa fa-fw {{benefitClass}}"></i> </span>
-													<span class="benefit-text col-xs-11"> {{benefitValue}}</span>
-                                                </div>
-                                                {{/each}}
+										<!-- Company Benefits-->
+										<div class="benefits box-xs">
+											<div class="toggle-job-brief row push-top-xs">
+												<span class="col-sm-12">
+													<span class="offers">
+														<i class="fa fa-fw fa-gift orange"></i>
+														<a href="" class="gray-light"><strong>What do we offer?</strong></a>
+														<i class="fa fa-caret-down text-gray-light "></i></span>
+												</span>
+											</div>
+											<div class="benefits-info collapse box-xs alert alert-info">
+												<div class="text-gray box-xs">
+													{{#each benefits}}
+													<div class="row">
+														<span class="benefit-icon pull-left"><i class="fa fa-fw {{benefitClass}}"></i> </span>
+														<span class="benefit-text col-xs-11"> {{benefitValue}}</span>
+													</div>
+													{{/each}}
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</td>
-						</tr>
-                        {{/each}}
-						<!--/ Job -->
-					</tbody>
-				</table>
+								</td>
+							</tr>
+							{{/each}}
+							<!--/ Job -->
+						</tbody>
+					</table>
+				</div>
+				<!--/ Jobs -->
 			</div>
-			<!--/ Jobs -->
+		</section>
+		<!--/ Job List -->
+		<!--/ Test the static Job List-->
+	{{else}}
+        <div class="loading">
+			{{> spinner}}
 		</div>
-	</section>
-	<!--/ Job List -->
-	<!--/ Test the static Job List-->
+	{{/if}}
 </template>
