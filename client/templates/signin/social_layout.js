@@ -1,13 +1,4 @@
 Template.social.events({
-    'click #facebook-login': function(event) {
-        Meteor.loginWithFacebook({}, function(err){
-            if (err) {
-                throw new Meteor.Error("Facebook login failed");
-            }
-        });
-        Session.set('isUserLogin', true);
-    },
-
     'click #linkedin-login': function(event) {
         Meteor.loginWithLinkedin({}, function(err){
             if (err) {
