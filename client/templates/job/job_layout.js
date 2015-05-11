@@ -19,7 +19,8 @@ Template.jobLayout.created = function() {
             subscription.ready();
         }
     });
-}
+};
+
 Template.jobLayout.rendered = function () {
     //Company Benefits Toggle - This is used to init the collapse/expanse functionality for the job benefits
     $('.toggle-job-brief a').click(function (e) {
@@ -28,7 +29,7 @@ Template.jobLayout.rendered = function () {
     $('body').on('click','.toggle-job-brief',function(){
         $(this).next('.benefits-info').slideToggle('normal');
         $(this).find('.fa-caret-down, .fa-caret-up').toggleClass('fa-caret-down fa-caret-up');
-    })
+    });
 
     $(window).focus(function () {
         checkMatchingInfoChanges();

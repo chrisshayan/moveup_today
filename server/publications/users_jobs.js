@@ -1,6 +1,7 @@
+var md5 = Meteor.settings.apiConsumerKey;
+var url = Meteor.settings.apiUrl;
+
 var getUserMatchingScoreInformation = function(userId) {
-    var md5 = "2ed19d9c84fa9280fe6fa1a9e58de807a9d076646de8327c53fc8ed64ca4e268";
-    var url = "https://api-staging.vietnamworks.com";
 
     var result = HTTP.get(
         url + "/users/matching-info/?userId=" + userId, {

@@ -96,8 +96,6 @@ Meteor.methods({
 
     getUserIdByEmailAddress: function(email) {
         try {
-            this.unblock();
-
             var result = HTTP.get(
                 url + "/users/user-info/?email=" + email, {
                     headers: {
@@ -117,8 +115,84 @@ Meteor.methods({
         }
     },
 
+    /**
+     *
+     * @param email
+     * @returns
+     * NEW, ACTIVATED, NON_ACTIVATED, BANNED
+     */
     getAccountStatus: function(email) {
-        //https://api-staging.vietnamworks.com/users/account-status/?email=son.tran123@navigosgroup.com
+        try {
+            var result = HTTP.get(
+                url + "/users/account-status/?email=" + email, {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    }
+                }
+            );
+        } catch (e) {
+            throw new Meteor.Error("rest-api-failed", "Failed to call the REST api on VietnamWorks");
+        }
 
+        var content = JSON.parse(result.content);
+        console.log(content);
+
+        return content;
+    },
+
+    registerAccount: function(email, firstname, lastname) {
+        try {
+            var result = Meteor.http.call(
+                "POST",
+                url + "/users/registerWithoutConfirm", {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    },
+                    data: {
+                        "email": email,
+                        "firstname": firstname,
+                        "lastname": lastname
+                    }
+                }
+            );
+
+            var content = JSON.parse(result.content);
+            return content;
+
+        } catch (e) {
+            throw new Meteor.Error("rest-api-failed", "Failed to call the REST api on VietnamWorks");
+        }
+    },
+
+    updateMatchingScoreInformation: function(userId, jobTitle) {
+        console.log("updateMatchingScoreInformation");
+
+        try {
+            var result = Meteor.http.call(
+                "POST",
+                url + "/users/update-matching-info/?userId=" + userId, {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    },
+                    data: {
+                        //"jobLevelId": jobLevelId,
+                        //"companySizeId": companySizeId,
+                        //"salary": salary,
+                        //"cityId": cityIds,
+                        //"industryId": industryIds,
+                        "jobTitle": jobTitle
+                    }
+                }
+            );
+            return JSON.parse(result.content);
+        } catch(e) {
+            throw new Meteor.Error("rest-api-failed", e);
+        }
     }
 });
