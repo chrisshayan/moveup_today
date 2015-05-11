@@ -140,7 +140,9 @@ section.footer{
 	.box{ border:none }
 	table{ border:none }
 	.orange strong{ font-weight:bold; color:@brand-primary }
-	.matching-score{ .transition(opacity 0.5s); img{width:98px;height:11px}; margin-top:20px; }
+	.matching-score{ .transition(opacity 0.5s);
+		img{ width:98px; height:11px }
+	; margin-top:20px; }
 	.job-post:hover .matching-score{ .opacity(1) }
 	.score{ font-size:16px; font-weight:bold; vertical-align:middle; }
 	.load-more-job{
@@ -152,6 +154,23 @@ section.footer{
 			}
 			&:active{ transform:rotate(270deg) }
 		}
+	}
+
+}
+// No Job Found Page
+//====================================
+body.no-job-found{
+	background:#f3f8f7;
+}
+section.no-job-found{background:#f3f8f7;
+	.container{ background:url(/assets/images/panic-bg.jpg) -140px bottom no-repeat; min-height:750px; }
+
+	.no-job-message{position:absolute;right:100px;bottom:450px}
+
+	h1{ font-size:48px; }
+	p{ font-size:30px;
+		a{ color:@brand-info; }
+		a:hover{ color:@brand-primary }
 	}
 
 }
