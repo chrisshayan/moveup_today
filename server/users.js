@@ -169,8 +169,6 @@ Meteor.methods({
     },
 
     updateMatchingScoreInformation: function(userId, jobTitle) {
-        console.log("updateMatchingScoreInformation");
-
         try {
             var result = Meteor.http.call(
                 "POST",

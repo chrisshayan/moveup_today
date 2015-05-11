@@ -18,6 +18,35 @@ Template.social.events({
             var emailAddress = Meteor.user().profile.emailAddress;
             Meteor.call("getAccountStatus", emailAddress, function(errors, accountStatusResult) {
                 if(accountStatusResult.meta.code === 200) {
+                    if(accountStatusResult.data.accountStatus === Meteor.settings.public.accountStatus.banned_user) {
+                        throwError("This email address" + emailAddress + " has login issues, please contact us (84 8) 5 404 1373");
+                    }
+
+                    if(accountStatusResult.data.accountStatus === Meteor.settings.public.accountStatus.activated_user || accountStatusResult.data.accountStatus === Meteor.settings.public.accountStatus.non_activated_user) {
+                        Meteor.call("getUserIdByEmailAddress", emailAddress,
+                            function(e, r) {
+                                Meteor.call("updateMatchingScoreInformation", r.userId, Meteor.user().profile.headline,
+                                    function(e, r) {
+                                        console.log("userId=" + newUserId);
+                                        Meteor.call("getUserMatchingScoreInformation", newUserId, function(errors, msResult) {
+                                            console.log(msResult);
+                                            var userInformation = {
+                                                status: 200,
+                                                token: "",
+                                                userId: newUserId,
+                                                userHasMatchingScore: true
+                                            };
+
+                                            Session.set('isUserLogin', true);
+                                            Session.set('userInformation', userInformation);
+                                            Session.set('matchingScoreInfo', msResult);
+                                            Router.go('jobLayout');
+                                        });
+                                    });
+                            });
+
+                    }
+
                     if(accountStatusResult.data.accountStatus === Meteor.settings.public.accountStatus.new_user) {
                         Meteor.call("registerAccount", emailAddress, Meteor.user().profile.firstName,
                                                        Meteor.user().profile.lastName, function(registerError, registerResult) {
@@ -25,7 +54,6 @@ Template.social.events({
                                     var newUserId = registerResult.data.userID;
                                     Meteor.call("updateMatchingScoreInformation", newUserId, Meteor.user().profile.headline,
                                             function(e, r) {
-                                                console.log("userId=" + newUserId);
                                                 Meteor.call("getUserMatchingScoreInformation", newUserId, function(errors, msResult) {
                                                     console.log(msResult);
                                                     var userInformation = {
