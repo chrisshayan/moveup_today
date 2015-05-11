@@ -26,14 +26,14 @@ Template.social.events({
                         Meteor.call("getUserIdByEmailAddress", emailAddress,
                             function(e, r) {
                                 Meteor.call("updateMatchingScoreInformation", r.userId, Meteor.user().profile.headline,
-                                    function(e, r) {
-                                        console.log("userId=" + newUserId);
-                                        Meteor.call("getUserMatchingScoreInformation", newUserId, function(errors, msResult) {
+                                    function(e, res) {
+                                        console.log("userId=" + r.userId);
+                                        Meteor.call("getUserMatchingScoreInformation", r.userId, function(errors, msResult) {
                                             console.log(msResult);
                                             var userInformation = {
                                                 status: 200,
                                                 token: "",
-                                                userId: newUserId,
+                                                userId: r.userId,
                                                 userHasMatchingScore: true
                                             };
 
