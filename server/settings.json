@@ -25,6 +25,13 @@
     "jobDomain": "http://vietnamworks.com",
     "persistent_session": {
       "default_method": "persistent"
+    },
+
+    "accountStatus": {
+      "new_user": "NEW",
+      "activated_user" : "ACTIVATED",
+      "non_activated_user" : "NON_ACTIVATED",
+      "banned_user" : "BANNED"
     }
   },
 

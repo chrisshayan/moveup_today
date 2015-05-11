@@ -96,8 +96,6 @@ Meteor.methods({
 
     getUserIdByEmailAddress: function(email) {
         try {
-            this.unblock();
-
             var result = HTTP.get(
                 url + "/users/user-info/?email=" + email, {
                     headers: {
@@ -117,10 +115,14 @@ Meteor.methods({
         }
     },
 
+    /**
+     *
+     * @param email
+     * @returns
+     * NEW, ACTIVATED, NON_ACTIVATED, BANNED
+     */
     getAccountStatus: function(email) {
         try {
-            this.unblock();
-
             var result = HTTP.get(
                 url + "/users/account-status/?email=" + email, {
                     headers: {
@@ -138,12 +140,10 @@ Meteor.methods({
         console.log(content);
 
         return content;
-        //https://api-staging.vietnamworks.com/users/account-status/?email=son.tran123@navigosgroup.com
     },
 
     registerAccount: function(email, firstname, lastname) {
         try {
-            this.unblock();
             var result = Meteor.http.call(
                 "POST",
                 url + "/users/registerWithoutConfirm", {
@@ -159,8 +159,40 @@ Meteor.methods({
                     }
                 }
             );
+
+            var content = JSON.parse(result.content);
+            return content;
+
         } catch (e) {
             throw new Meteor.Error("rest-api-failed", "Failed to call the REST api on VietnamWorks");
+        }
+    },
+
+    updateMatchingScoreInformation: function(userId, jobTitle) {
+        console.log("updateMatchingScoreInformation");
+
+        try {
+            var result = Meteor.http.call(
+                "POST",
+                url + "/users/update-matching-info/?userId=" + userId, {
+                    headers: {
+                        "content-type": "application/json",
+                        "Accept": "application/json",
+                        "content-md5": md5
+                    },
+                    data: {
+                        //"jobLevelId": jobLevelId,
+                        //"companySizeId": companySizeId,
+                        //"salary": salary,
+                        //"cityId": cityIds,
+                        //"industryId": industryIds,
+                        "jobTitle": jobTitle
+                    }
+                }
+            );
+            return JSON.parse(result.content);
+        } catch(e) {
+            throw new Meteor.Error("rest-api-failed", e);
         }
     }
 });
