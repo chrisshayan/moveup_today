@@ -1,33 +1,35 @@
 <template name="signinLayout">
-    <div id="vnw-log-in" class="container">
-        <div class="login-wrapper row">
-            <div class="login-intro col-md-8">
-                <h2>Please sign in to continue...</h2>
-                <ul>
-                    <li><strong>Access to thousands of jobs</strong><span>View over 3,000 new jobs every month and apply online instantly!</span></li>
-                    <li><strong>Job search while you sleep</strong><span>Create a Job Alert – we'll send you an email with new jobs that fit you as soon as they appear on our site!</span></li>
-                    <li><strong>Get career advice</strong><span>Visit our Career Center for tips on how to write a great resume or interview successfully!</span></li>
-                </ul>
-            </div>
-            <div class="login-box col-md-4">
-                <div class="login-box-border">
-                    <h3>JobSeekers Sign In Here</h3>
-                    <form method="post" class="form">
-                        <fieldset>
-                            <input type="text" tabindex="1" placeholder="Email Address" required="required"
-                                   name="username" id="form_username">
-                            <input type="password" tabindex="2" placeholder="Password" required="required"
-                                   name="password" id="form_password">
-                            <button class="submit-button" tabindex="3" type="submit">Sign In</button>
-                            {{> errors}}
-                            <a href="http://www.vietnamworks.com/forget-password" target="_blank">Forgot Password ?</a>
-                        </fieldset>
-                    </form>
-                    <div class="line-break"></div>
-                    <p>Don't have an account yet ?</p>
-                    {{> social}}
-                </div>
-            </div>
-        </div>
-    </div>
+	<section class="log-in push-top-lg">
+		<div id="vnw-log-in" class="container">
+			<div class="login-wrapper row">
+				<div class="login-intro col-md-8">
+					<h2>Please sign in to continue...</h2>
+					<ul>
+						<li><strong>Access to thousands of jobs</strong><span>View over 3,000 new jobs every month and apply online instantly!</span></li>
+						<li><strong>Job search while you sleep</strong><span>Create a Job Alert – we'll send you an email with new jobs that fit you as soon as they appear on our site!</span></li>
+						<li><strong>Get career advice</strong><span>Visit our Career Center for tips on how to write a great resume or interview successfully!</span></li>
+					</ul>
+				</div>
+				<div class="login-box col-md-4">
+					<div class="login-box-border">
+						<h3>Người Tìm Việc</h3>
+						<form method="post" class="form">
+							<fieldset>
+								<input type="text" tabindex="1" placeholder="Email Address" required="required"
+									   name="username" id="form_username">
+								<input type="password" tabindex="2" placeholder="Password" required="required"
+									   name="password" id="form_password">
+								<button class="btn btn-primary btn-sm" tabindex="3" type="submit">Đăng Nhập</button>
+                                <a href="http://www.vietnamworks.com/forget-password" target="_blank">Quên mật khẩu ?</a>
+                                {{> errors}}
+							</fieldset>
+						</form>
+						<div class="line-break"></div>
+						<p>Chưa có tài khoản ?</p>
+                        {{> social}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </template>

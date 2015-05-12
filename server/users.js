@@ -1,5 +1,5 @@
-var md5 = Meteor.settings.apiConsumerKey;
-var url = Meteor.settings.apiUrl;
+var md5 = Meteor.settings.private.apiConsumerKey;
+var url = Meteor.settings.private.apiUrl;
 
 Meteor.methods({
     vietnamworksLogin: function (email, password) {

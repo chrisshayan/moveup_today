@@ -1,0 +1,22 @@
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+//Border radius
+.border-radius(@radius) {
+	border-radius:@radius;
+	-webkit-border-radius:@radius;
+	-moz-border-radius:@radius;
+}
+
+//Circle
+.circle(@diameter) {
+	.square(@diameter);
+	.border-radius(@diameter);
+	display:block;
+}
+
+//Animation Delay
+.animation-delay(@delay-time) {
+	animation-delay:@delay-time;
+	-webkit-animation-delay:@delay-time;
+}

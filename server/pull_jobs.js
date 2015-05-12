@@ -1,6 +1,6 @@
 pullJobs = function(period) {
-    var md5 = Meteor.settings.apiConsumerKey;
-    var url = Meteor.settings.apiUrl;
+    var md5 = Meteor.settings.private.apiConsumerKey;
+    var url = Meteor.settings.private.apiUrl;
     try {
         var result = HTTP.get(
             url + "/jobs/fetch/?period=" + period,

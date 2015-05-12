@@ -2,10 +2,12 @@
 	{{#if Template.subscriptionsReady}}
 		<!-- Test the static Job List-->
 		<!-- Job List -->
+		{{#if jobs}}
 		<section class="job-list bg-gray" id="vnw-job-search">
 			<div class="container">
 				<!-- Jobs -->
 				<div class="box push-top-lg">
+
 					<table class="table table-hover link-list table-expanded ">
 						<tbody>
 							<!-- Job -->
@@ -121,6 +123,9 @@
 				<!--/ Jobs -->
 			</div>
 		</section>
+		{{else}}
+			{{> noJobFoundLayout}}
+		{{/if}}
 		<!--/ Job List -->
 		<!--/ Test the static Job List-->
 	{{else}}

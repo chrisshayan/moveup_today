@@ -1,15 +1,14 @@
-@import "../../../vnw/ui/css/jobseekers/variables.less";
-@import "../../../vnw/ui/css/jobseekers/mixins";
+@import "variables.less";
+@import "mixins";
 // General
 //====================================
 html{ height:100% }
-body{ font-family:Roboto, Arial, sans-serif; background:@gray-light-extreme; margin:0; padding:0; min-height:100%; position:relative; padding-bottom:80px;
+body{ font-family:Roboto, Arial, sans-serif; background:#eee; margin:0; padding:0; min-height:100%; position:relative; padding-bottom:80px;
 	&.home-page{ background:url(/assets/images/move-up-story-background.png); background-size:cover; }
 	*{ font-weight:100; color:#7a8288 }
 	.container h1{ font-size:36px; font-weight:700; color:#444; text-align:center; margin-top:70px; }
 	.container h2{ font-size:24px; font-weight:700; color:#444 }
 	p.lead{ font-weight:100; font-size:24px; color:#666; text-align:center; margin-top:0; margin-bottom:40px; }
-	section{ background:#fff }
 }
 // Header
 //====================================
@@ -18,7 +17,7 @@ section.header{
 	background:#fff;
 	.logo-moveup-today{
 		font-weight:700; color:#444; font-size:30px; margin-top:5px;
-		.dot{ color:@brand-info; font-size:36px; font-weight:900; }
+		.dot{ color:#00b9f2; font-size:36px; font-weight:900; }
 	}
 
 	.top-navigation{ margin-top:17px; margin-right:25px;
@@ -26,6 +25,10 @@ section.header{
 		.btn-main{ border:1px solid #d2e0ea; border-radius:4px; margin-left:10px; }
 	}
 
+	.user-log-out{ margin-top:23px; margin-right:40px; cursor:pointer;
+		i{ .transition(color 0.3s) }
+		a:hover i{ color:@brand-primary }
+	}
 	.vnw-logo{ margin:10px 0 }
 }
 // Jumbotron
@@ -38,9 +41,11 @@ section.jumbotron{
 	p.lead{ color:#fff; font-size:23px; margin-top:30px; margin-bottom:0; }
 	.btn-primary{ font-size:24px; font-weight:700; margin-top:30px; }
 	.share{ font-size:18px; margin-top:15px; margin-bottom:60px;
-		span, em{ color:#fff; vertical-align:middle; }
-		em{ font-size:16px; }
-		a, img{ outline:none }
+		em{ color:#fff; font-size:16px; }
+		.share-buttons{ display:inline-block; width:32px; height:32px; background-color:#6F9C9F; border-radius:16px; vertical-align:middle;
+			a{ vertical-align:middle; height:32px; display:inline-block; margin-top:-14px; margin-left:-2px; }
+			.fa.fa-facebook{ color:#fff }
+		}
 	}
 }
 // Footer
@@ -139,8 +144,10 @@ section.footer{
 .job-list{
 	.box{ border:none }
 	table{ border:none }
-	.orange strong{ font-weight:bold; color:@brand-primary }
-	.matching-score{ .transition(opacity 0.5s); img{width:98px;height:11px}; margin-top:20px; }
+	.orange strong{ font-weight:bold; color:#ff9900 }
+	.matching-score{ .transition(opacity 0.5s);
+		img{ width:98px; height:11px }
+	; margin-top:20px; }
 	.job-post:hover .matching-score{ .opacity(1) }
 	.score{ font-size:16px; font-weight:bold; vertical-align:middle; }
 	.load-more-job{
@@ -154,4 +161,78 @@ section.footer{
 		}
 	}
 
+}
+// No Job Found Page
+//====================================
+body.no-job-found{
+	background:#f3f8f7;
+	.job-list.bg-gray{ background-color:#f3f8f7 !important;
+		.box{ border:none; .box-shadow(none); }
+	}
+}
+section.no-job-found{ background:#f3f8f7;
+	.container{ background:url(/assets/images/panic-bg.jpg) -70px bottom no-repeat; min-height:750px; }
+
+	.no-job-message{ position:absolute; right:180px; bottom:390px; margin-bottom:10px; }
+
+	h1{ font-size:48px; }
+	p{ font-size:30px;
+		a{ color:#00b9f2; }
+		a:hover{ color:#ff9900 }
+	}
+
+	// Medium & large screen | 992px <= Screen
+	@media (min-width:@screen-md-min) and (max-width:@screen-md-max){
+		.container{ background-position:-110px bottom; }
+		.no-job-message{ right:150px; bottom:430px;
+			h1{ font-size:40px; }
+			p{ font-size:27px; }
+		}
+	}
+
+	// Small screen | 768px <= Screen < 992px
+	@media (min-width:@screen-sm-min) and (max-width:@screen-sm-max){
+		.container{ background-position:-130px bottom; }
+		.no-job-message{ right:0; bottom:490px;
+			h1{ font-size:36px; }
+			p{ font-size:24px; }
+		}
+	}
+
+	//Extreme small screen | Screen < 768px
+	@media (max-width:@screen-xs-max){
+		.container{ background:none; min-height:0; }
+		.no-job-message{ position:static;
+			h1{ font-size:36px; margin-bottom:15px; }
+			p{ font-size:24px; }
+		}
+	}
+
+	// Screen <= 360px
+	@media (max-width:@screen-nexus){
+		.no-job-message{
+			h1{ font-size:33px; }
+			p{ font-size:20px; }
+		}
+	}
+
+	// Screen <= 320px
+	@media (max-width:@screen-iphone){
+		.no-job-message{
+			h1{ font-size:28px; }
+			p{ font-size:18px; }
+		}
+	}
+}
+// Log In Page
+//====================================
+
+section.log-in{
+	.btn-sm{ padding:7px 10px; font-weight:500; }
+	.btn-linkedin{ background:#007AB9; border:none; color:#fff; vertical-align:middle;
+		&:hover{ background:#006ba8; }
+		&:active{ background:#00619e; }
+	}
+	.fa-linkedin-square{ color:#fff; margin-right:5px; vertical-align:middle; font-size:18px; }
+	.btn-logout-linkedin .fa{color:@gray-light}
 }
