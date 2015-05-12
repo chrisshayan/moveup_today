@@ -1,13 +1,8 @@
 Template.signinLayout.events({
     'submit form': function(event, template) {
-
-        console.log('submit form triggered');
-
         event.preventDefault();
-
         clearErrors();
         Meteor.call("vietnamworksLogin", event.target.username.value, event.target.password.value, function (error, result) {
-            console.log(result);
             if(result.status == 200) {
                 if(result.userHasMatchingScore) {
                     Session.set('isUserLogin', true);

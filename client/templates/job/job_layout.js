@@ -11,6 +11,7 @@ Template.jobLayout.created = function() {
     checkMatchingInfoChanges();
     // setup subscribe to userJobs publication that depends on matchingScoreInfo session
     instance.autorun(function () {
+        console.log('subscribe');
         var matchingInfo = Session.get('matchingScoreInfo');
         if (matchingInfo != 'null') {
             var jobTitle = matchingInfo.data.matching_info.jobTitle;
@@ -50,7 +51,7 @@ Template.jobLayout.helpers({
         if (params.length > 1) {
             try {
                 var result = ReactiveMethod.call("getMatchingScore", params);
-                if (!!result) {
+                if (result) {
                     _.map(jobList, function(job) {
                         if (_.has(result, job.jobId)) {
                             job.matchingScore = Math.round(result[job.jobId]);
@@ -59,7 +60,13 @@ Template.jobLayout.helpers({
                         }
                     });
                     return jobList;
+                } else {
+                    _.map(jobList, function(job) {
+                        job.matchingScore = 'Đang tính ... ';
+                    });
+                    return jobList;
                 }
+
             } catch (e) {
                 console.log(e);
             }
