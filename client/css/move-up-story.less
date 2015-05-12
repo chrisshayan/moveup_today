@@ -1,9 +1,9 @@
-@import "../../../vnw/ui/css/jobseekers/variables.less";
-@import "../../../vnw/ui/css/jobseekers/mixins";
+@import "variables.less";
+@import "mixins";
 // General
 //====================================
 html{ height:100% }
-body{ font-family:Roboto, Arial, sans-serif; background:@gray-light-extreme; margin:0; padding:0; min-height:100%; position:relative; padding-bottom:80px;
+body{ font-family:Roboto, Arial, sans-serif; background:#eee; margin:0; padding:0; min-height:100%; position:relative; padding-bottom:80px;
 	&.home-page{ background:url(/assets/images/move-up-story-background.png); background-size:cover; }
 	*{ font-weight:100; color:#7a8288 }
 	.container h1{ font-size:36px; font-weight:700; color:#444; text-align:center; margin-top:70px; }
@@ -18,7 +18,7 @@ section.header{
 	background:#fff;
 	.logo-moveup-today{
 		font-weight:700; color:#444; font-size:30px; margin-top:5px;
-		.dot{ color:@brand-info; font-size:36px; font-weight:900; }
+		.dot{ color:#00b9f2; font-size:36px; font-weight:900; }
 	}
 
 	.top-navigation{ margin-top:17px; margin-right:25px;
@@ -26,7 +26,7 @@ section.header{
 		.btn-main{ border:1px solid #d2e0ea; border-radius:4px; margin-left:10px; }
 	}
 
-	.vnw-logo{ margin:10px 0 }
+	.vnw-logo{ margin:10px 0}
 }
 // Jumbotron
 section.jumbotron{
@@ -139,7 +139,7 @@ section.footer{
 .job-list{
 	.box{ border:none }
 	table{ border:none }
-	.orange strong{ font-weight:bold; color:@brand-primary }
+	.orange strong{ font-weight:bold; color:#ff9900}
 	.matching-score{ .transition(opacity 0.5s);
 		img{ width:98px; height:11px }
 	; margin-top:20px; }
@@ -163,14 +163,14 @@ body.no-job-found{
 	background:#f3f8f7;
 }
 section.no-job-found{background:#f3f8f7;
-	.container{ background:url(/assets/images/panic-bg.jpg) -140px bottom no-repeat; min-height:750px; }
+	.container{ background:url(/assets/images/panic-bg.jpg) -70px bottom no-repeat; min-height:750px; }
 
 	.no-job-message{position:absolute;right:100px;bottom:450px}
 
 	h1{ font-size:48px; }
 	p{ font-size:30px;
-		a{ color:@brand-info; }
-		a:hover{ color:@brand-primary }
+		a{ color:#00b9f2; }
+		a:hover{ color:#ff9900}
 	}
 
 }
