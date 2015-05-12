@@ -26,7 +26,7 @@ section.header{
 	}
 
 	.user-log-out{ margin-top:23px; margin-right:40px; cursor:pointer;
-		i{.transition(color 0.3s)}
+		i{ .transition(color 0.3s) }
 		a:hover i{ color:@brand-primary }
 	}
 	.vnw-logo{ margin:10px 0 }
@@ -223,4 +223,16 @@ section.no-job-found{ background:#f3f8f7;
 			p{ font-size:18px; }
 		}
 	}
+}
+// Log In Page
+//====================================
+
+section.log-in{
+	.btn-sm{ padding:7px 10px; font-weight:500; }
+	.btn-linkedin{ background:#007AB9; border:none; color:#fff; vertical-align:middle;
+		&:hover{ background:#006ba8; }
+		&:active{ background:#00619e; }
+	}
+	.fa-linkedin-square{ color:#fff; margin-right:5px; vertical-align:middle; font-size:18px; }
+	.btn-logout-linkedin .fa{color:@gray-light}
 }
