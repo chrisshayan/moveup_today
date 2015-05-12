@@ -3,10 +3,15 @@ Template.noJobFoundLayout.onRendered(function () {
     var winHeight = $('html').height();
     var calculatedHeight = winHeight - $('.header').height() - $('.footer').height();
     $('section.no-job-found .container').height(calculatedHeight)
-    console.log(calculatedHeight);
+    $(window).on('resize.noJobPageResize', function () {
+        var winHeight = $('html').height();
+        var calculatedHeight = winHeight - $('.header').height() - $('.footer').height();
+        $('section.no-job-found .container').height(calculatedHeight)
+    })
 
 });
 
 Template.noJobFoundLayout.onDestroyed(function () {
     $('body').removeClass('no-job-found')
+    $(window).off('resize.noJobPageResize')
 })
