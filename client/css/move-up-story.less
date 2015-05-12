@@ -26,7 +26,7 @@ section.header{
 		.btn-main{ border:1px solid #d2e0ea; border-radius:4px; margin-left:10px; }
 	}
 
-	.vnw-logo{ margin:10px 0}
+	.vnw-logo{ margin:10px 0 }
 }
 // Jumbotron
 section.jumbotron{
@@ -139,7 +139,7 @@ section.footer{
 .job-list{
 	.box{ border:none }
 	table{ border:none }
-	.orange strong{ font-weight:bold; color:#ff9900}
+	.orange strong{ font-weight:bold; color:#ff9900 }
 	.matching-score{ .transition(opacity 0.5s);
 		img{ width:98px; height:11px }
 	; margin-top:20px; }
@@ -162,15 +162,48 @@ section.footer{
 body.no-job-found{
 	background:#f3f8f7;
 }
-section.no-job-found{background:#f3f8f7;
+section.no-job-found{ background:#f3f8f7;
 	.container{ background:url(/assets/images/panic-bg.jpg) -70px bottom no-repeat; min-height:750px; }
 
-	.no-job-message{position:absolute;right:100px;bottom:440px; margin-bottom:10px;}
+	.no-job-message{ position:absolute; right:100px; bottom:440px; margin-bottom:10px; }
 
 	h1{ font-size:48px; }
 	p{ font-size:30px;
 		a{ color:#00b9f2; }
-		a:hover{ color:#ff9900}
+		a:hover{ color:#ff9900 }
 	}
 
+	// Small screen | 768px <= Screen < 992px
+	@media (min-width:@screen-sm-min) and (max-width:@screen-sm-max){
+		.container{ background-position:-130px bottom; }
+		.no-job-message{ right:0; bottom:490px;
+			h1{ font-size:36px; }
+			p{ font-size:24px; }
+		}
+	}
+
+	//Extreme small screen | Screen < 768px
+	@media (max-width:@screen-xs-max){
+		.container{ background:none; min-height:0; }
+		.no-job-message{ position:static;
+			h1{ font-size:36px; margin-bottom:15px; }
+			p{ font-size:24px; }
+		}
+	}
+
+	// Screen <= 360px
+	@media (max-width:@screen-nexus){
+		.no-job-message{
+			h1{ font-size:33px; }
+			p{ font-size:20px; }
+		}
+	}
+
+	// Screen <= 320px
+	@media (max-width:@screen-iphone){
+		.no-job-message{
+			h1{ font-size:28px; }
+			p{ font-size:18px; }
+		}
+	}
 }
