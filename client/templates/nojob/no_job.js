@@ -14,4 +14,10 @@ Template.noJobFoundLayout.onRendered(function () {
 Template.noJobFoundLayout.onDestroyed(function () {
     $('body').removeClass('no-job-found')
     $(window).off('resize.noJobPageResize')
+});
+
+Template.noJobFoundLayout.helpers({
+    careerCenter: function(){
+        return Meteor.settings.public.jobDomain + "/quan-ly-nghe-nghiep";
+    }
 })

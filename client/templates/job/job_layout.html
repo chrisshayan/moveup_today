@@ -6,6 +6,7 @@
 			<div class="container">
 				<!-- Jobs -->
 				<div class="box push-top-lg">
+					{{#if jobs}}
 					<table class="table table-hover link-list table-expanded ">
 						<tbody>
 							<!-- Job -->
@@ -117,6 +118,9 @@
 							<!--/ Job -->
 						</tbody>
 					</table>
+					{{else}}
+						{{> noJobFoundLayout}}
+					{{/if}}
 				</div>
 				<!--/ Jobs -->
 			</div>
