@@ -26,6 +26,7 @@ section.header{
 		.btn-main{ border:1px solid #d2e0ea; border-radius:4px; margin-left:10px; }
 	}
 
+	.user-log-out{ margin-top:23px; margin-right:40px; cursor:pointer;}
 	.vnw-logo{ margin:10px 0 }
 }
 // Jumbotron
@@ -41,7 +42,7 @@ section.jumbotron{
 		em{ color:#fff; font-size:16px; }
 		.share-buttons{ display:inline-block; width:32px; height:32px; background-color:#6F9C9F; border-radius:16px; vertical-align:middle;
 			a{ vertical-align:middle; height:32px; display:inline-block; margin-top:-14px; margin-left:-2px; }
-			.fa.fa-facebook{color:#fff}
+			.fa.fa-facebook{ color:#fff }
 		}
 	}
 }
@@ -163,16 +164,28 @@ section.footer{
 //====================================
 body.no-job-found{
 	background:#f3f8f7;
+	.job-list.bg-gray{ background-color:#f3f8f7 !important;
+		.box{ border:none; .box-shadow(none); }
+	}
 }
 section.no-job-found{ background:#f3f8f7;
 	.container{ background:url(/assets/images/panic-bg.jpg) -70px bottom no-repeat; min-height:750px; }
 
-	.no-job-message{ position:absolute; right:100px; bottom:440px; margin-bottom:10px; }
+	.no-job-message{ position:absolute; right:180px; bottom:390px; margin-bottom:10px; }
 
 	h1{ font-size:48px; }
 	p{ font-size:30px;
 		a{ color:#00b9f2; }
 		a:hover{ color:#ff9900 }
+	}
+
+	// Medium & large screen | 992px <= Screen
+	@media (min-width:@screen-md-min) and (max-width:@screen-md-max){
+		.container{ background-position:-110px bottom; }
+		.no-job-message{ right:150px; bottom:430px;
+			h1{ font-size:40px; }
+			p{ font-size:27px; }
+		}
 	}
 
 	// Small screen | 768px <= Screen < 992px
