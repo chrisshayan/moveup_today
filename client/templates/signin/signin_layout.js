@@ -3,14 +3,11 @@ Template.signinLayout.events({
         event.preventDefault();
         clearErrors();
         Meteor.call("vietnamworksLogin", event.target.username.value, event.target.password.value, function (error, result) {
-            if(result.status == 200) {
-                if(result.userHasMatchingScore) {
+            if(result.userLogin.status == 200) {
+                if(result.userLogin.userHasMatchingScore) {
+                    Session.set('matchingScoreInfo', result.matchingInfo);
                     Session.set('isUserLogin', true);
-                    Session.set('userInformation', result);
-
-                    Meteor.call('getUserMatchingScoreInformation', result.userId, function(error, matchingScoreInfo) {
-                        Session.set('matchingScoreInfo', matchingScoreInfo);
-                    });
+                    Session.set('userInformation', result.userLogin);
                 } else {
                     throwError("Your account does not have enough information for Matching Score. Update in <a href='http://www.vietnamworks.com/my-career-center'>here.</a>");
                 }

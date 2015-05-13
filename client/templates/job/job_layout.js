@@ -1,9 +1,12 @@
 var checkMatchingInfoChanges = function () {
-    Meteor.call('getUserMatchingScoreInformation', Session.get('userInformation').userId, function (error, matchingInfo) {
-        if (matchingInfo.data.matching_info.jobTitle != Session.get('matchingScoreInfo').data.matching_info.jobTitle) {
-            Session.set('matchingScoreInfo', matchingInfo);
-        }
-    });
+    var matchingScoreInfo = Session.get('matchingScoreInfo');
+    if (matchingScoreInfo != 'null' && typeof matchingScoreInfo != 'undefined') {
+        Meteor.call('getUserMatchingScoreInformation', Session.get('userInformation').userId, function (error, matchingInfo) {
+            if (matchingInfo.data.matching_info.jobTitle != matchingScoreInfo.data.matching_info.jobTitle) {
+                Session.set('matchingScoreInfo', matchingInfo);
+            }
+        });
+    }
 };
 Template.jobLayout.created = function() {
     var instance = this;
@@ -13,7 +16,7 @@ Template.jobLayout.created = function() {
     instance.autorun(function () {
         console.log('subscribe');
         var matchingInfo = Session.get('matchingScoreInfo');
-        if (matchingInfo != 'null') {
+        if (matchingInfo != 'null' && typeof matchingInfo != 'undefined') {
             var jobTitle = matchingInfo.data.matching_info.jobTitle;
             var jobId = Session.get('userInformation').userId;
             var subscription = instance.subscribe('userJobs', jobId, jobTitle);

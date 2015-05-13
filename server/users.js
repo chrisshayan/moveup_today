@@ -29,29 +29,33 @@ Meteor.methods({
 
             var content = JSON.parse(result.content);
             if (result.statusCode == 200 && content.meta.message != "Failed") {
-                var isUserHavingMatchingScore = Meteor.http.call(
-                    "POST",
-                    url + "/users/has-matching-info/?token=" + content.data.profile.login_token, {
-                        headers: {
-                            "content-type": "application/json",
-                            "Accept": "application/json",
-                            "content-md5": md5
+                try {
+                    var result = HTTP.get(
+                        url + "/users/matching-info/?userId=" + content.data.profile.user_id, {
+                            headers: {
+                                "content-type": "application/json",
+                                "Accept": "application/json",
+                                "content-md5": md5
+                            }
                         }
-                    }
-                );
-                var isUserHavingMatchingScoreJson = JSON.parse(isUserHavingMatchingScore.content);
-                console.log(email + ":" + isUserHavingMatchingScoreJson.data.has_matching_info);
-
-                returnJson.status = 200;
-                returnJson.token = content.data.profile.login_token;
-                returnJson.userId = content.data.profile.user_id;
-                returnJson.userHasMatchingScore = isUserHavingMatchingScoreJson.data.has_matching_info;
+                    );
+                    var matchingInfo = JSON.parse(result.content);
+                    returnJson.status = 200;
+                    returnJson.token = content.data.profile.login_token;
+                    returnJson.userId = content.data.profile.user_id;
+                    returnJson.userHasMatchingScore = matchingInfo.data != 'null' && typeof matchingInfo.data != 'undefined';
+                } catch(eMatchingInfoNotFound) {
+                    returnJson.status = 200;
+                    returnJson.token = content.data.profile.login_token;
+                    returnJson.userId = content.data.profile.user_id;
+                    returnJson.userHasMatchingScore = false;
+                }
             }
         } catch (e) {
             console.error(e);
         }
 
-        return returnJson;
+        return { userLogin: returnJson, matchingInfo: matchingInfo };
     },
 
     getMatchingScore : function(args) {
