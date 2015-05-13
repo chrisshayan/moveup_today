@@ -12,8 +12,8 @@ var addJob = function () {
             return parser.text('every 30 seconds');
         },
         job: function() {
-            // Pull the jobs of last times into Jobs mongodb collection
-            pullJobs(Meteor.settings.private.timeLatestJobs);
+            // Pull the jobs of last 10 minutes into Jobs mongodb collection
+            pullJobs(Meteor.settings.private.cronFetchJobPeriod);
         }
     });
 };
