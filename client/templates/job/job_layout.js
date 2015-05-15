@@ -82,7 +82,7 @@ Template.jobLayout.helpers({
     },
 
     jobUrl: function() {
-        return Meteor.settings.public.jobDomain + '/' + this.alias + "-jd";
+        return Meteor.settings.public.jobDomain + '/' + this.alias + '-' + this.jobId + "-jd";
     },
 
     formatDate: function() {
